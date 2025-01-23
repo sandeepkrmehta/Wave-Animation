@@ -7,6 +7,21 @@ const App = () => {
   const [cols, setCols] = useState(20);
   const [speed, setSpeed] = useState(200);
 
+  const handleRowsChange = (e) => {
+    const value = Number(e.target.value);
+    setRows(value > 0 ? value : 15); 
+  };
+
+  const handleColsChange = (e) => {
+    const value = Number(e.target.value);
+    setCols(value > 0 ? value : 20); 
+  };
+
+  const handleSpeedChange = (e) => {
+    const value = Number(e.target.value);
+    setSpeed(value >= 50 ? value : 200); 
+  };
+
   return (
     <div>
       <h1 className="text-center text-white my-5">Wave Animation</h1>
@@ -17,7 +32,7 @@ const App = () => {
           <input
             type="number"
             value={rows}
-            onChange={(e) => setRows(Number(e.target.value))}
+            onChange={handleRowsChange}
             className="mt-2 sm:mt-0 sm:ml-3 p-3 rounded-md bg-gray-800 text-white border-none"
           />
         </label>
@@ -27,7 +42,7 @@ const App = () => {
           <input
             type="number"
             value={cols}
-            onChange={(e) => setCols(Number(e.target.value))}
+            onChange={handleColsChange}
             className="mt-2 sm:mt-0 sm:ml-3 p-3 rounded-md bg-gray-800 text-white border-none"
           />
         </label>
@@ -37,12 +52,12 @@ const App = () => {
           <input
             type="number"
             value={speed}
-            onChange={(e) => setSpeed(Number(e.target.value))}
+            onChange={handleSpeedChange}
             className="mt-2 sm:mt-0 sm:ml-3 p-3 rounded-md bg-gray-800 text-white border-none"
           />
         </label>
       </div>
-
+      
       <Grid rows={rows} cols={cols} speed={speed} />
     </div>
   );
